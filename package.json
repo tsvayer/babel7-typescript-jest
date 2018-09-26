@@ -23,7 +23,7 @@
     "clean": "rimraf lib",
     "build": "yarn clean && yarn build:js && yarn build:types",
     "build:js": "babel src --out-dir lib --extensions '.ts'",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "tsc --emitDeclarationOnly -p tsconfig.build.json",
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check --watch"
   },

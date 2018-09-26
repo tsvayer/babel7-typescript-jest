@@ -12,7 +12,7 @@ yarn add --dev typescript
 
 ## Babel 7 and TypeScript configuration
 
-> According to [Typescript-Babel-Starter](https://github.com/Microsoft/TypeScript-Babel-Starter)
+> According to [TypeScript-Babel-Starter](https://github.com/Microsoft/TypeScript-Babel-Starter)
 
 First initialize TypeScript configuration
 
@@ -20,10 +20,12 @@ First initialize TypeScript configuration
 yarn tsc --init --declaration --allowSyntheticDefaultImports --target esnext --outDir lib
 ```
 
-and configre `include` parameter inside tsconfig.json:
+This configuration file will be used by default. For instance, type checking inside VSCode.
+For build stage create another configuration file named `tsconfig.build.json`. It will extend the default configuration file and specify additional `include` option:
 
 ```json
 {
+  "extends": "./tsconfig.json",
   "include": ["src/index.ts"]
 }
 ```
@@ -43,7 +45,7 @@ and configure related scripts:
 {
   "build": "yarn build:js && yarn build:types",
   "build:js": "babel src --out-dir lib --extensions '.ts'",
-  "build:types": "tsc --emitDeclarationOnly",
+  "build:types": "tsc --emitDeclarationOnly -p tsconfig.build.json",
   "type-check": "tsc --noEmit",
   "type-check:watch": "yarn type-check --watch"
 }
