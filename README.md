@@ -1,4 +1,4 @@
-# Babel 7 - TypeScript - Mocha template
+# Babel 7 - TypeScript - Jest template
 
 ## Create from scratch
 
@@ -51,26 +51,26 @@ and configure related scripts:
 }
 ```
 
-## Confgure Mocha
+## Confgure Jest
 
-First install Mocha and Chai dependencies along with TypeScript types:
-
-```bash
-yarn add --dev mocha chai @types/mocha @types/chai
-```
-
-Then install a workaround for this [issue](https://github.com/babel/babel/pull/6027):
+First install Jest along with TypeScript related dependencies:
 
 ```bash
-yarn add --dev @babel/register
-yarn add --dev babel-register-ts
+yarn add --dev jest ts-jest @types/jest
 ```
 
-and configure related `test` script:
+Initialize Jest configuration:
+
+```bash
+yarn ts-jest config:init
+```
+
+it will create a `jest.config.js` file with necessary configuration for running tests written in TypeScript.
+Then configure related `test` script:
 
 ```json
 {
-  "test": "mocha -r babel-register-ts test/**/*.ts"
+  "test": "jest"
 }
 ```
 
